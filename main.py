@@ -107,8 +107,10 @@ body{background:#0a0a0a;color:#d4d4d8;font-family:system-ui,-apple-system,sans-s
 .container{max-width:640px;margin:0 auto;animation:fadeIn 0.6s ease-out}
 @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 .header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-.title{font-family:monospace;font-style:italic;font-size:28px;color:#6C5CE7;font-weight:600}
-.badge{background:rgba(108,92,231,0.15);color:#6C5CE7;padding:4px 12px;border-radius:12px;font-size:13px;font-weight:500;border:1px solid rgba(108,92,231,0.3)}
+.title{font-family:monospace;font-size:28px;color:#6C5CE7;font-weight:700}
+.health{font-family:monospace;font-size:13px;color:#555;display:flex;align-items:center;gap:6px}
+.health .d{width:8px;height:8px;border-radius:50%;background:#555;transition:background .3s}
+.health .d.on{background:#4CAF50}
 .subtitle{color:#71717a;font-size:15px;margin-bottom:24px}
 .card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:20px;margin-bottom:16px}
 .section-title{font-size:11px;text-transform:uppercase;letter-spacing:1.2px;color:#71717a;margin-bottom:16px;font-weight:600}
@@ -146,7 +148,7 @@ body{background:#0a0a0a;color:#d4d4d8;font-family:system-ui,-apple-system,sans-s
 <div class="container">
 <div class="header">
 <div class="title">Polymarket</div>
-<div class="badge" id="health-badge">Checking...</div>
+<div class="health"><span class="d" id="dot"></span><span id="health-text">connecting...</span></div>
 </div>
 <div class="subtitle">Prediction markets \u2014 politics, crypto, sports, culture</div>
 <div class="card">
@@ -171,17 +173,14 @@ Try: <a href="#" onclick="searchFor('election');return false">election</a> \u00b
 </div>
 <script>
 async function fetchHealth(){
+const t0=Date.now();
 try{
-const r=await fetch('/health');
-const d=await r.json();
-document.getElementById('health-badge').textContent=d.status==='healthy'?'\\u2713 Healthy':'Error';
-document.getElementById('health-badge').style.background=d.status==='healthy'?'rgba(34,197,94,0.15)':'rgba(239,68,68,0.15)';
-document.getElementById('health-badge').style.color=d.status==='healthy'?'#22c55e':'#ef4444';
-document.getElementById('health-badge').style.borderColor=d.status==='healthy'?'rgba(34,197,94,0.3)':'rgba(239,68,68,0.3)';
+await fetch('/health');
+const ms=Date.now()-t0;
+document.getElementById('dot').classList.add('on');
+document.getElementById('health-text').textContent='online \\u00B7 '+ms+'ms';
 }catch(e){
-document.getElementById('health-badge').textContent='Offline';
-document.getElementById('health-badge').style.background='rgba(239,68,68,0.15)';
-document.getElementById('health-badge').style.color='#ef4444';
+document.getElementById('health-text').textContent='offline';
 }
 }
 async function fetchTrending(){
