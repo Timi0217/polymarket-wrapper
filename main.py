@@ -103,45 +103,72 @@ HOME_HTML = """<!DOCTYPE html>
 <title>Polymarket Wrapper</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#0a0a0a;color:#d4d4d8;font-family:system-ui,-apple-system,sans-serif;padding:24px;min-height:100vh}
-.container{max-width:640px;margin:0 auto;animation:fadeIn 0.6s ease-out}
+body{background:#131823;color:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;padding:32px 24px;min-height:100vh}
+.container{max-width:1100px;margin:0 auto;animation:fadeIn 0.6s ease-out}
 @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-.title{font-family:monospace;font-size:28px;color:#6C5CE7;font-weight:700}
-.health{font-family:monospace;font-size:13px;color:#555;display:flex;align-items:center;gap:6px}
+.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.title{font-family:monospace;font-size:28px;color:#2563EB;font-weight:700}
+.health{font-family:monospace;font-size:13px;color:#8B949E;display:flex;align-items:center;gap:6px}
 .health .d{width:8px;height:8px;border-radius:50%;background:#555;transition:background .3s}
-.health .d.on{background:#4CAF50}
-.subtitle{color:#71717a;font-size:15px;margin-bottom:24px}
-.card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:20px;margin-bottom:16px}
-.section-title{font-size:11px;text-transform:uppercase;letter-spacing:1.2px;color:#71717a;margin-bottom:16px;font-weight:600}
-.market{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:14px;margin-bottom:10px;animation:fadeIn 0.5s ease-out backwards}
-.market:nth-child(2){animation-delay:0.05s}
-.market:nth-child(3){animation-delay:0.1s}
-.market:nth-child(4){animation-delay:0.15s}
-.market:nth-child(5){animation-delay:0.2s}
-.market:nth-child(6){animation-delay:0.25s}
-.market-question{font-size:15px;margin-bottom:10px;line-height:1.4;color:#e4e4e7}
-.outcome-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
-.outcome-label{font-family:monospace;font-size:13px;min-width:50px;color:#a1a1aa}
-.outcome-bar{flex:1;height:24px;background:rgba(255,255,255,0.05);border-radius:6px;position:relative;overflow:hidden}
-.outcome-fill{height:100%;background:linear-gradient(90deg,#6C5CE7,#8B7FE8);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:12px;font-weight:600;color:#fff;transition:width 0.4s ease}
-.outcome-simple{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
-.outcome-name{font-size:13px;color:#a1a1aa}
-.outcome-pct{font-family:monospace;font-size:14px;font-weight:600;color:#6C5CE7}
-.volume{font-size:12px;color:#52525b;margin-top:8px}
-.search-box{display:flex;gap:8px;margin-bottom:12px}
-.search-box input{flex:1;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:12px 16px;color:#e4e4e7;font-size:15px;outline:none;transition:border 0.2s}
-.search-box input:focus{border-color:#6C5CE7}
-.search-box input::placeholder{color:#52525b}
-.search-btn{background:#6C5CE7;color:#fff;border:none;padding:12px 24px;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;transition:background 0.2s}
-.search-btn:hover{background:#5a4ec4}
-.try-queries{font-size:13px;color:#71717a}
-.try-queries a{color:#6C5CE7;text-decoration:none;margin:0 4px}
+.health .d.on{background:#22C55E}
+.subtitle{color:#8B949E;font-size:15px;margin-bottom:20px}
+.categories{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px}
+.category-pill{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:6px 14px;font-size:13px;color:#8B949E;cursor:pointer;transition:all 0.2s}
+.category-pill:hover{background:rgba(255,255,255,0.1);color:#fff}
+.section-title{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:#8B949E;margin-bottom:20px;font-weight:600}
+.hero-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:28px;margin-bottom:20px;animation:fadeIn 0.5s ease-out backwards}
+.hero-question{font-size:18px;font-weight:700;margin-bottom:20px;line-height:1.4;color:#fff}
+.hero-probability{font-size:36px;font-weight:700;margin-bottom:20px}
+.hero-probability.yes-color{color:#22C55E}
+.hero-probability.no-color{color:#F43F5E}
+.hero-outcomes{display:flex;flex-direction:column;gap:12px;margin-bottom:16px}
+.hero-outcome-row{display:flex;align-items:center;gap:12px}
+.hero-outcome-label{font-size:14px;font-weight:600;min-width:50px}
+.hero-outcome-label.yes{color:#22C55E}
+.hero-outcome-label.no{color:#EF4444}
+.hero-outcome-bar{flex:1;height:32px;background:rgba(255,255,255,0.05);border-radius:8px;position:relative;overflow:hidden}
+.hero-outcome-fill{height:100%;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:14px;font-weight:600;color:#fff;transition:width 0.5s ease}
+.hero-outcome-fill.yes{background:#22C55E}
+.hero-outcome-fill.no{background:#EF4444}
+.volume-badge{display:inline-block;background:rgba(244,63,94,0.15);color:#F43F5E;padding:6px 12px;border-radius:8px;font-size:13px;font-weight:600;font-family:monospace}
+.compact-markets{display:flex;flex-direction:column;gap:12px;margin-bottom:32px}
+.compact-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:18px;animation:fadeIn 0.5s ease-out backwards;transition:all 0.2s}
+.compact-card:hover{background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.12)}
+.compact-card:nth-child(2){animation-delay:0.05s}
+.compact-card:nth-child(3){animation-delay:0.1s}
+.compact-card:nth-child(4){animation-delay:0.15s}
+.compact-card:nth-child(5){animation-delay:0.2s}
+.compact-question{font-size:15px;font-weight:600;margin-bottom:12px;line-height:1.4;color:#fff}
+.inline-outcomes{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
+.outcome-pill{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;background:rgba(255,255,255,0.05);border-radius:6px;font-size:13px}
+.outcome-pill.yes{color:#22C55E}
+.outcome-pill.no{color:#8B949E}
+.outcome-pill-label{font-weight:600}
+.outcome-pill-pct{font-family:monospace;font-weight:700}
+.volume-line{font-size:12px;color:#8B949E;font-family:monospace}
+.volume-line .amount{color:#F43F5E;font-weight:600}
+.hot-section{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:24px;margin-bottom:32px}
+.hot-item{padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;gap:16px;align-items:flex-start}
+.hot-item:last-child{border-bottom:none}
+.hot-number{font-size:18px;font-weight:700;color:#2563EB;min-width:30px;font-family:monospace}
+.hot-content{flex:1}
+.hot-question{font-size:14px;font-weight:600;margin-bottom:6px;color:#fff;line-height:1.4}
+.hot-volume{font-size:13px;color:#8B949E}
+.hot-volume .amount{color:#F43F5E;font-weight:700}
+.search-section{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:24px}
+.search-box{display:flex;gap:10px;margin-bottom:14px}
+.search-box input{flex:1;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:14px 18px;color:#fff;font-size:15px;outline:none;transition:all 0.2s}
+.search-box input:focus{border-color:#2563EB;background:rgba(255,255,255,0.08)}
+.search-box input::placeholder{color:#8B949E}
+.search-btn{background:#2563EB;color:#fff;border:none;padding:14px 28px;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;transition:background 0.2s}
+.search-btn:hover{background:#1D4ED8}
+.try-queries{font-size:13px;color:#8B949E}
+.try-queries a{color:#2563EB;text-decoration:none;margin:0 6px}
 .try-queries a:hover{text-decoration:underline}
-.error{color:#ef4444;font-size:14px;margin-top:8px}
-.loading{text-align:center;color:#71717a;padding:20px}
-#results{margin-top:16px}
-.result-item{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:14px;margin-bottom:10px}
+.error{color:#EF4444;font-size:14px;margin-top:12px}
+.loading{text-align:center;color:#8B949E;padding:24px}
+#results{margin-top:20px}
+.result-item{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;margin-bottom:12px}
 </style>
 </head>
 <body>
@@ -150,22 +177,32 @@ body{background:#0a0a0a;color:#d4d4d8;font-family:system-ui,-apple-system,sans-s
 <div class="title">Polymarket</div>
 <div class="health"><span class="d" id="dot"></span><span id="health-text">connecting...</span></div>
 </div>
-<div class="subtitle">Prediction markets \u2014 politics, crypto, sports, culture</div>
-<div class="card">
-<div class="section-title">TRENDING MARKETS</div>
-<div id="trending-markets">
-<div class="loading">Loading trending markets...</div>
+<div class="subtitle">Prediction markets — politics, crypto, sports, culture</div>
+<div class="categories">
+<div class="category-pill">Trending</div>
+<div class="category-pill">Politics</div>
+<div class="category-pill">Crypto</div>
+<div class="category-pill">Sports</div>
+<div class="category-pill">Finance</div>
+<div class="category-pill">Tech</div>
+<div class="category-pill">Culture</div>
 </div>
+<div class="section-title">TRENDING NOW</div>
+<div id="hero-container"></div>
+<div id="compact-container" class="compact-markets"></div>
+<div class="hot-section">
+<div class="section-title" style="margin-bottom:16px">HOT MARKETS</div>
+<div id="hot-container"></div>
 </div>
-<div class="card">
+<div class="search-section">
 <div class="search-box">
-<input type="text" id="search-input" placeholder="Bitcoin price">
-<button class="search-btn" onclick="search()">\u2192 search</button>
+<input type="text" id="search-input" placeholder="Search markets... (e.g. Bitcoin, election, Fed rate)">
+<button class="search-btn" onclick="search()">Search</button>
 </div>
 <div class="try-queries">
-Try: <a href="#" onclick="searchFor('election');return false">election</a> \u00b7
-<a href="#" onclick="searchFor('crypto');return false">crypto</a> \u00b7
-<a href="#" onclick="searchFor('Fed');return false">Fed</a> \u00b7
+Quick links: <a href="#" onclick="searchFor('election');return false">election</a> ·
+<a href="#" onclick="searchFor('crypto');return false">crypto</a> ·
+<a href="#" onclick="searchFor('Fed');return false">Fed</a> ·
 <a href="#" onclick="searchFor('sports');return false">sports</a>
 </div>
 <div id="results"></div>
@@ -178,54 +215,123 @@ try{
 await fetch('/health');
 const ms=Date.now()-t0;
 document.getElementById('dot').classList.add('on');
-document.getElementById('health-text').textContent='online \\u00B7 '+ms+'ms';
+document.getElementById('health-text').textContent='● online · '+ms+'ms';
 }catch(e){
 document.getElementById('health-text').textContent='offline';
 }
 }
 async function fetchTrending(){
 try{
-const r=await fetch('/trending?limit=5');
+const r=await fetch('/trending?limit=8');
 const d=await r.json();
-const container=document.getElementById('trending-markets');
 if(!d.trending||d.trending.length===0){
-container.innerHTML='<div class="loading">No trending markets available</div>';
+document.getElementById('hero-container').innerHTML='<div class="loading">No trending markets available</div>';
 return;
 }
+const markets=d.trending;
+if(markets.length>0){
+renderHeroCard(markets[0]);
+}
+if(markets.length>1){
+renderCompactCards(markets.slice(1,5));
+}
+if(markets.length>5){
+renderHotMarkets(markets.slice(5,8));
+}
+}catch(e){
+document.getElementById('hero-container').innerHTML='<div class="error">Failed to load trending markets</div>';
+}
+}
+function renderHeroCard(m){
+const outcomes=m.outcomes||{};
+const keys=Object.keys(outcomes);
+let html='<div class="hero-card">';
+html+='<div class="hero-question">'+escapeHtml(m.question||'Untitled Market')+'</div>';
+if(keys.length===2&&(keys.includes('Yes')||keys.includes('No'))){
+const yesP=outcomes.Yes||0;
+const noP=outcomes.No||0;
+const mainP=yesP>=50?yesP:noP;
+const mainLabel=yesP>=50?'Yes':'No';
+const colorClass=yesP>=50?'yes-color':'no-color';
+html+='<div class="hero-probability '+colorClass+'">'+mainP.toFixed(1)+'%</div>';
+html+='<div class="hero-outcomes">';
+html+='<div class="hero-outcome-row">';
+html+='<div class="hero-outcome-label yes">Yes</div>';
+html+='<div class="hero-outcome-bar"><div class="hero-outcome-fill yes" style="width:'+yesP+'%">'+yesP.toFixed(1)+'%</div></div>';
+html+='</div>';
+html+='<div class="hero-outcome-row">';
+html+='<div class="hero-outcome-label no">No</div>';
+html+='<div class="hero-outcome-bar"><div class="hero-outcome-fill no" style="width:'+noP+'%">'+noP.toFixed(1)+'%</div></div>';
+html+='</div>';
+html+='</div>';
+}else{
+const sorted=keys.map(k=>({name:k,pct:outcomes[k]})).sort((a,b)=>b.pct-a.pct);
+if(sorted.length>0){
+html+='<div class="hero-probability yes-color">'+sorted[0].pct.toFixed(1)+'%</div>';
+}
+html+='<div class="hero-outcomes">';
+sorted.slice(0,3).forEach(o=>{
+html+='<div class="hero-outcome-row">';
+html+='<div class="hero-outcome-label">'+escapeHtml(o.name)+'</div>';
+html+='<div class="hero-outcome-bar"><div class="hero-outcome-fill yes" style="width:'+o.pct+'%">'+o.pct.toFixed(1)+'%</div></div>';
+html+='</div>';
+});
+html+='</div>';
+}
+if(m.volume_24h){
+html+='<div class="volume-badge">24h: $'+formatNumber(m.volume_24h)+'</div>';
+}else if(m.volume){
+html+='<div class="volume-badge">Vol: $'+formatNumber(m.volume)+'</div>';
+}
+html+='</div>';
+document.getElementById('hero-container').innerHTML=html;
+}
+function renderCompactCards(markets){
 let html='';
-d.trending.forEach(m=>{
-html+='<div class="market">';
-html+='<div class="market-question">'+escapeHtml(m.question||'Untitled Market')+'</div>';
+markets.forEach(m=>{
+html+='<div class="compact-card">';
+html+='<div class="compact-question">'+escapeHtml(m.question||'Untitled Market')+'</div>';
 const outcomes=m.outcomes||{};
 const keys=Object.keys(outcomes);
 if(keys.length===2&&(keys.includes('Yes')||keys.includes('No'))){
 const yesP=outcomes.Yes||0;
 const noP=outcomes.No||0;
-html+='<div class="outcome-row">';
-html+='<span class="outcome-label">Yes</span>';
-html+='<div class="outcome-bar"><div class="outcome-fill" style="width:'+yesP+'%">'+yesP.toFixed(1)+'%</div></div>';
-html+='</div>';
-html+='<div class="outcome-row">';
-html+='<span class="outcome-label">No</span>';
-html+='<div class="outcome-bar"><div class="outcome-fill" style="width:'+noP+'%">'+noP.toFixed(1)+'%</div></div>';
+html+='<div class="inline-outcomes">';
+html+='<div class="outcome-pill yes"><span class="outcome-pill-label">Yes</span><span class="outcome-pill-pct">'+yesP.toFixed(1)+'%</span></div>';
+html+='<div class="outcome-pill no"><span class="outcome-pill-label">No</span><span class="outcome-pill-pct">'+noP.toFixed(1)+'%</span></div>';
 html+='</div>';
 }else{
 const sorted=keys.map(k=>({name:k,pct:outcomes[k]})).sort((a,b)=>b.pct-a.pct).slice(0,3);
+html+='<div class="inline-outcomes">';
 sorted.forEach(o=>{
-html+='<div class="outcome-simple"><span class="outcome-name">'+escapeHtml(o.name)+'</span><span class="outcome-pct">'+o.pct.toFixed(1)+'%</span></div>';
+html+='<div class="outcome-pill yes"><span class="outcome-pill-label">'+escapeHtml(o.name)+'</span><span class="outcome-pill-pct">'+o.pct.toFixed(1)+'%</span></div>';
 });
+html+='</div>';
 }
 if(m.volume_24h){
-html+='<div class="volume">24h volume: $'+formatNumber(m.volume_24h)+'</div>';
+html+='<div class="volume-line">24h: <span class="amount">$'+formatNumber(m.volume_24h)+'</span></div>';
 }else if(m.volume){
-html+='<div class="volume">Volume: $'+formatNumber(m.volume)+'</div>';
+html+='<div class="volume-line">Vol: <span class="amount">$'+formatNumber(m.volume)+'</span></div>';
 }
 html+='</div>';
 });
-container.innerHTML=html;
-}catch(e){
-document.getElementById('trending-markets').innerHTML='<div class="error">Failed to load trending markets</div>';
+document.getElementById('compact-container').innerHTML=html;
 }
+function renderHotMarkets(markets){
+let html='';
+markets.forEach((m,idx)=>{
+html+='<div class="hot-item">';
+html+='<div class="hot-number">'+(idx+1)+'</div>';
+html+='<div class="hot-content">';
+html+='<div class="hot-question">'+escapeHtml(m.question||'Untitled Market')+'</div>';
+const vol=m.volume_24h||m.volume;
+if(vol){
+html+='<div class="hot-volume">Volume: <span class="amount">$'+formatNumber(vol)+'</span></div>';
+}
+html+='</div>';
+html+='</div>';
+});
+document.getElementById('hot-container').innerHTML=html;
 }
 function escapeHtml(t){
 const d=document.createElement('div');
@@ -233,8 +339,8 @@ d.textContent=t;
 return d.innerHTML;
 }
 function formatNumber(n){
-if(n>=1e9)return(n/1e9).toFixed(2)+'B';
-if(n>=1e6)return(n/1e6).toFixed(2)+'M';
+if(n>=1e9)return(n/1e9).toFixed(1)+'B';
+if(n>=1e6)return(n/1e6).toFixed(1)+'M';
 if(n>=1e3)return(n/1e3).toFixed(1)+'K';
 return n.toFixed(0);
 }
@@ -253,19 +359,27 @@ return;
 let html='';
 d.results.forEach(m=>{
 html+='<div class="result-item">';
-html+='<div class="market-question">'+escapeHtml(m.question||'Untitled')+'</div>';
+html+='<div class="compact-question">'+escapeHtml(m.question||'Untitled')+'</div>';
 const outcomes=m.outcomes||{};
 const keys=Object.keys(outcomes);
 if(keys.length===2&&(keys.includes('Yes')||keys.includes('No'))){
 const yesP=outcomes.Yes||0;
 const noP=outcomes.No||0;
-html+='<div class="outcome-simple"><span class="outcome-name">Yes</span><span class="outcome-pct">'+yesP.toFixed(1)+'%</span></div>';
-html+='<div class="outcome-simple"><span class="outcome-name">No</span><span class="outcome-pct">'+noP.toFixed(1)+'%</span></div>';
+html+='<div class="inline-outcomes">';
+html+='<div class="outcome-pill yes"><span class="outcome-pill-label">Yes</span><span class="outcome-pill-pct">'+yesP.toFixed(1)+'%</span></div>';
+html+='<div class="outcome-pill no"><span class="outcome-pill-label">No</span><span class="outcome-pill-pct">'+noP.toFixed(1)+'%</span></div>';
+html+='</div>';
 }else{
 const sorted=keys.map(k=>({name:k,pct:outcomes[k]})).sort((a,b)=>b.pct-a.pct).slice(0,3);
+html+='<div class="inline-outcomes">';
 sorted.forEach(o=>{
-html+='<div class="outcome-simple"><span class="outcome-name">'+escapeHtml(o.name)+'</span><span class="outcome-pct">'+o.pct.toFixed(1)+'%</span></div>';
+html+='<div class="outcome-pill yes"><span class="outcome-pill-label">'+escapeHtml(o.name)+'</span><span class="outcome-pill-pct">'+o.pct.toFixed(1)+'%</span></div>';
 });
+html+='</div>';
+}
+const vol=m.volume_24h||m.volume;
+if(vol){
+html+='<div class="volume-line">Vol: <span class="amount">$'+formatNumber(vol)+'</span></div>';
 }
 html+='</div>';
 });
