@@ -178,6 +178,7 @@ body{background:#0a0a0a;color:#fff;font-family:-apple-system,BlinkMacSystemFont,
 <div class="section-label">TRENDING MARKETS</div>
 <div id="hero-container"></div>
 <div id="compact-container" class="compact-markets"></div>
+<div id="hot-container"></div>
 <div class="categories">
 <div class="category-chip">Trending</div>
 <div class="category-chip">Politics</div>
