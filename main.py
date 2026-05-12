@@ -103,107 +103,101 @@ HOME_HTML = """<!DOCTYPE html>
 <title>Polymarket Wrapper</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#131823;color:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;padding:32px 24px;min-height:100vh}
-.container{max-width:1100px;margin:0 auto;animation:fadeIn 0.6s ease-out}
+body{background:#0a0a0a;color:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;padding:40px 24px;min-height:100vh}
+.container{max-width:600px;margin:0 auto;animation:fadeIn 0.6s ease-out}
 @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
-.title{font-family:monospace;font-size:28px;color:#2563EB;font-weight:700}
-.health{font-family:monospace;font-size:13px;color:#8B949E;display:flex;align-items:center;gap:6px}
-.health .d{width:8px;height:8px;border-radius:50%;background:#555;transition:background .3s}
-.health .d.on{background:#22C55E}
-.subtitle{color:#8B949E;font-size:15px;margin-bottom:20px}
+.header{display:flex;align-items:center;gap:16px;margin-bottom:32px}
+.icon-block{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#2563EB,#1D4ED8);display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;color:#fff;flex-shrink:0}
+.header-content{flex:1}
+.title{font-size:24px;font-weight:700;color:#fff;margin-bottom:2px}
+.subtitle{font-size:13px;color:#555;line-height:1.4}
+.health-badge{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:20px;padding:6px 12px;font-size:12px;color:#555;margin-left:auto;white-space:nowrap}
+.health-dot{width:6px;height:6px;border-radius:50%;background:#555;transition:background .3s}
+.health-dot.on{background:#22C55E}
+.section-label{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:#555;margin-bottom:16px;font-weight:600}
 .categories{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px}
-.category-pill{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:6px 14px;font-size:13px;color:#8B949E;cursor:pointer;transition:all 0.2s}
-.category-pill:hover{background:rgba(255,255,255,0.1);color:#fff}
-.section-title{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:#8B949E;margin-bottom:20px;font-weight:600}
-.hero-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:28px;margin-bottom:20px;animation:fadeIn 0.5s ease-out backwards}
-.hero-question{font-size:18px;font-weight:700;margin-bottom:20px;line-height:1.4;color:#fff}
-.hero-probability{font-size:36px;font-weight:700;margin-bottom:20px}
-.hero-probability.yes-color{color:#22C55E}
-.hero-probability.no-color{color:#F43F5E}
-.hero-outcomes{display:flex;flex-direction:column;gap:12px;margin-bottom:16px}
-.hero-outcome-row{display:flex;align-items:center;gap:12px}
-.hero-outcome-label{font-size:14px;font-weight:600;min-width:50px}
-.hero-outcome-label.yes{color:#22C55E}
-.hero-outcome-label.no{color:#EF4444}
-.hero-outcome-bar{flex:1;height:32px;background:rgba(255,255,255,0.05);border-radius:8px;position:relative;overflow:hidden}
-.hero-outcome-fill{height:100%;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:14px;font-weight:600;color:#fff;transition:width 0.5s ease}
+.category-chip{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:20px;padding:5px 14px;font-size:12px;color:#555;cursor:pointer;transition:all 0.2s}
+.category-chip:hover{border-color:rgba(37,99,235,0.4);color:#2563EB}
+.hero-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:24px;margin-bottom:16px;animation:fadeIn 0.5s ease-out backwards}
+.hero-question{font-size:17px;font-weight:700;margin-bottom:20px;line-height:1.4;color:#fff}
+.hero-outcomes{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
+.hero-outcome-row{display:flex;align-items:center;gap:10px}
+.hero-outcome-label{font-size:13px;font-weight:600;min-width:40px;padding:4px 10px;border-radius:20px;text-align:center}
+.hero-outcome-label.yes{background:rgba(34,197,94,0.15);color:#22C55E}
+.hero-outcome-label.no{background:rgba(239,68,68,0.15);color:#EF4444}
+.hero-outcome-bar{flex:1;height:28px;background:rgba(255,255,255,0.04);border-radius:20px;position:relative;overflow:hidden}
+.hero-outcome-fill{height:100%;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;transition:width 0.5s ease;font-family:monospace}
 .hero-outcome-fill.yes{background:#22C55E}
 .hero-outcome-fill.no{background:#EF4444}
-.volume-badge{display:inline-block;background:rgba(244,63,94,0.15);color:#F43F5E;padding:6px 12px;border-radius:8px;font-size:13px;font-weight:600;font-family:monospace}
-.compact-markets{display:flex;flex-direction:column;gap:12px;margin-bottom:32px}
-.compact-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:18px;animation:fadeIn 0.5s ease-out backwards;transition:all 0.2s}
-.compact-card:hover{background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.12)}
+.volume-badge{display:inline-block;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);color:#888;padding:5px 12px;border-radius:20px;font-size:11px;font-weight:600;font-family:monospace}
+.compact-markets{display:flex;flex-direction:column;gap:10px;margin-bottom:32px}
+.compact-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:18px;animation:fadeIn 0.5s ease-out backwards;transition:all 0.2s}
+.compact-card:hover{background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.1)}
 .compact-card:nth-child(2){animation-delay:0.05s}
 .compact-card:nth-child(3){animation-delay:0.1s}
 .compact-card:nth-child(4){animation-delay:0.15s}
 .compact-card:nth-child(5){animation-delay:0.2s}
-.compact-question{font-size:15px;font-weight:600;margin-bottom:12px;line-height:1.4;color:#fff}
-.inline-outcomes{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
-.outcome-pill{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;background:rgba(255,255,255,0.05);border-radius:6px;font-size:13px}
+.compact-question{font-size:14px;font-weight:600;margin-bottom:12px;line-height:1.4;color:#fff}
+.inline-outcomes{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
+.outcome-pill{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:20px;font-size:12px}
 .outcome-pill.yes{color:#22C55E}
-.outcome-pill.no{color:#8B949E}
+.outcome-pill.no{color:#888}
 .outcome-pill-label{font-weight:600}
 .outcome-pill-pct{font-family:monospace;font-weight:700}
-.volume-line{font-size:12px;color:#8B949E;font-family:monospace}
-.volume-line .amount{color:#F43F5E;font-weight:600}
-.hot-section{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:24px;margin-bottom:32px}
-.hot-item{padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;gap:16px;align-items:flex-start}
-.hot-item:last-child{border-bottom:none}
-.hot-number{font-size:18px;font-weight:700;color:#2563EB;min-width:30px;font-family:monospace}
-.hot-content{flex:1}
-.hot-question{font-size:14px;font-weight:600;margin-bottom:6px;color:#fff;line-height:1.4}
-.hot-volume{font-size:13px;color:#8B949E}
-.hot-volume .amount{color:#F43F5E;font-weight:700}
-.search-section{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:24px}
-.search-box{display:flex;gap:10px;margin-bottom:14px}
-.search-box input{flex:1;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:14px 18px;color:#fff;font-size:15px;outline:none;transition:all 0.2s}
-.search-box input:focus{border-color:#2563EB;background:rgba(255,255,255,0.08)}
-.search-box input::placeholder{color:#8B949E}
-.search-btn{background:#2563EB;color:#fff;border:none;padding:14px 28px;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;transition:background 0.2s}
-.search-btn:hover{background:#1D4ED8}
-.try-queries{font-size:13px;color:#8B949E}
-.try-queries a{color:#2563EB;text-decoration:none;margin:0 6px}
-.try-queries a:hover{text-decoration:underline}
-.error{color:#EF4444;font-size:14px;margin-top:12px}
-.loading{text-align:center;color:#8B949E;padding:24px}
+.volume-line{font-size:11px;color:#555;font-family:monospace}
+.volume-line .amount{color:#888;font-weight:600}
+.search-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:24px;margin-bottom:32px}
+.search-box{display:flex;gap:8px;margin-bottom:16px}
+.search-box input{flex:1;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:12px 16px;color:#fff;font-size:14px;outline:none;transition:all 0.2s}
+.search-box input:focus{border-color:rgba(37,99,235,0.4);background:rgba(255,255,255,0.06)}
+.search-box input::placeholder{color:#555}
+.search-btn{background:linear-gradient(135deg,#2563EB,#1D4ED8);color:#fff;border:none;padding:12px 24px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;transition:opacity 0.2s}
+.search-btn:hover{opacity:0.9}
+.quick-links{display:flex;gap:8px;flex-wrap:wrap}
+.quick-link{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:20px;padding:5px 14px;font-size:12px;color:#555;cursor:pointer;transition:all 0.2s;text-decoration:none}
+.quick-link:hover{border-color:rgba(37,99,235,0.4);color:#2563EB}
+.error{color:#EF4444;font-size:13px;margin-top:12px}
+.loading{text-align:center;color:#555;padding:20px;font-size:13px}
 #results{margin-top:20px}
-.result-item{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;margin-bottom:12px}
+.result-item{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:16px;margin-bottom:10px}
 </style>
 </head>
 <body>
 <div class="container">
 <div class="header">
+<div class="icon-block">P</div>
+<div class="header-content">
 <div class="title">Polymarket</div>
-<div class="health"><span class="d" id="dot"></span><span id="health-text">connecting...</span></div>
-</div>
 <div class="subtitle">Prediction markets — politics, crypto, sports, culture</div>
-<div class="categories">
-<div class="category-pill">Trending</div>
-<div class="category-pill">Politics</div>
-<div class="category-pill">Crypto</div>
-<div class="category-pill">Sports</div>
-<div class="category-pill">Finance</div>
-<div class="category-pill">Tech</div>
-<div class="category-pill">Culture</div>
 </div>
-<div class="section-title">TRENDING NOW</div>
+<div class="health-badge">
+<span class="health-dot" id="dot"></span>
+<span id="health-text">connecting...</span>
+</div>
+</div>
+<div class="section-label">TRENDING MARKETS</div>
 <div id="hero-container"></div>
 <div id="compact-container" class="compact-markets"></div>
-<div class="hot-section">
-<div class="section-title" style="margin-bottom:16px">HOT MARKETS</div>
-<div id="hot-container"></div>
+<div class="categories">
+<div class="category-chip">Trending</div>
+<div class="category-chip">Politics</div>
+<div class="category-chip">Crypto</div>
+<div class="category-chip">Sports</div>
+<div class="category-chip">Finance</div>
+<div class="category-chip">Tech</div>
+<div class="category-chip">Culture</div>
 </div>
-<div class="search-section">
+<div class="search-card">
+<div class="section-label" style="margin-bottom:12px">SEARCH MARKETS</div>
 <div class="search-box">
 <input type="text" id="search-input" placeholder="Search markets... (e.g. Bitcoin, election, Fed rate)">
 <button class="search-btn" onclick="search()">Search</button>
 </div>
-<div class="try-queries">
-Quick links: <a href="#" onclick="searchFor('election');return false">election</a> ·
-<a href="#" onclick="searchFor('crypto');return false">crypto</a> ·
-<a href="#" onclick="searchFor('Fed');return false">Fed</a> ·
-<a href="#" onclick="searchFor('sports');return false">sports</a>
+<div class="quick-links">
+<a href="#" class="quick-link" onclick="searchFor('election');return false">election</a>
+<a href="#" class="quick-link" onclick="searchFor('crypto');return false">crypto</a>
+<a href="#" class="quick-link" onclick="searchFor('Fed');return false">Fed</a>
+<a href="#" class="quick-link" onclick="searchFor('sports');return false">sports</a>
 </div>
 <div id="results"></div>
 </div>
@@ -215,7 +209,7 @@ try{
 await fetch('/health');
 const ms=Date.now()-t0;
 document.getElementById('dot').classList.add('on');
-document.getElementById('health-text').textContent='● online · '+ms+'ms';
+document.getElementById('health-text').textContent='online · '+ms+'ms';
 }catch(e){
 document.getElementById('health-text').textContent='offline';
 }
@@ -253,7 +247,6 @@ const noP=outcomes.No||0;
 const mainP=yesP>=50?yesP:noP;
 const mainLabel=yesP>=50?'Yes':'No';
 const colorClass=yesP>=50?'yes-color':'no-color';
-html+='<div class="hero-probability '+colorClass+'">'+mainP.toFixed(1)+'%</div>';
 html+='<div class="hero-outcomes">';
 html+='<div class="hero-outcome-row">';
 html+='<div class="hero-outcome-label yes">Yes</div>';
@@ -266,13 +259,10 @@ html+='</div>';
 html+='</div>';
 }else{
 const sorted=keys.map(k=>({name:k,pct:outcomes[k]})).sort((a,b)=>b.pct-a.pct);
-if(sorted.length>0){
-html+='<div class="hero-probability yes-color">'+sorted[0].pct.toFixed(1)+'%</div>';
-}
 html+='<div class="hero-outcomes">';
 sorted.slice(0,3).forEach(o=>{
 html+='<div class="hero-outcome-row">';
-html+='<div class="hero-outcome-label">'+escapeHtml(o.name)+'</div>';
+html+='<div class="hero-outcome-label yes">'+escapeHtml(o.name)+'</div>';
 html+='<div class="hero-outcome-bar"><div class="hero-outcome-fill yes" style="width:'+o.pct+'%">'+o.pct.toFixed(1)+'%</div></div>';
 html+='</div>';
 });
